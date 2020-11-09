@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{C901D330-0679-4A94-BCA1-8ECA929DE996}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Client.cs">
+    <Files>
+      <File FileName="Server.cs" Line="90" Column="49" />
+      <File FileName="Client.cs" Line="161" Column="46" />
+      <File FileName="Map.cs" Line="5" Column="12" />
+      <File FileName="Player.cs" Line="4" Column="8" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Networking" expanded="True">
+            <Node name="Networking" expanded="True">
+              <Node name="Client.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <Debugger.DebugSourceFolders />
+  <MonoDevelop.Ide.ItemProperties.Networking PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
