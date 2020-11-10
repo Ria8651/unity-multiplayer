@@ -28,4 +28,12 @@ public class ClientSend : MonoBehaviour {
             SendUDPData(_packet);
         }
     }
+
+    public static void LoadMap(int map) {
+        using (Packet _packet = new Packet((int)ClientPackets.loadMap)) {
+            _packet.Write(map);
+
+            SendTCPData(_packet);
+        }
+    }
 }

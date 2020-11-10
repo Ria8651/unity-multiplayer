@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour {
 
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
-    public GameObject[] maps;
+    public Map[] maps;
 
-    GameObject loadedMap;
+    GameObject loadedMapGO;
     int loadedMapId = -1;
 
     void Awake() {
@@ -47,27 +47,27 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        if (loadedMap != null) {
-            Destroy(loadedMap);
+        if (loadedMapGO != null) {
+            Destroy(loadedMapGO);
         }
 
-        loadedMap = Instantiate(maps[mapId]);
+        loadedMapGO = Instantiate(maps[mapId].gameObject);
         loadedMapId = mapId;
 
-        loadedMap.name = "Map " + mapId.ToString();
+        loadedMapGO.name = "Map " + mapId.ToString();
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.P)) {
-            LoadMap(0);
+            ClientSend.LoadMap(0);
         }
 
         if (Input.GetKeyDown(KeyCode.O)) {
-            LoadMap(1);
+            ClientSend.LoadMap(1);
         }
 
         if (Input.GetKeyDown(KeyCode.I)) {
-            LoadMap(2);
+            ClientSend.LoadMap(2);
         }
     }
 }

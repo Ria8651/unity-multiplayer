@@ -37,4 +37,10 @@ public class ClientHandle : MonoBehaviour {
 
         GameManager.instance.LoadMap(mapId);
     }
+
+    public static void Teleport(Packet _packet) {
+        Vector3 position = _packet.ReadVector3();
+
+        GameManager.players[Client.instance.myId].Teleport(position);
+    }
 }

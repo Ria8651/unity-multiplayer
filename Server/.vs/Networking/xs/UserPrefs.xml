@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{C901D330-0679-4A94-BCA1-8ECA929DE996}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Client.cs">
     <Files>
-      <File FileName="Server.cs" Line="90" Column="49" />
-      <File FileName="Client.cs" Line="161" Column="46" />
-      <File FileName="Map.cs" Line="5" Column="12" />
-      <File FileName="Player.cs" Line="4" Column="8" />
+      <File FileName="ServerSend.cs" Line="88" Column="45" />
+      <File FileName="Server.cs" Line="93" Column="10" />
+      <File FileName="Map.cs" Line="30" Column="1" />
+      <File FileName="Client.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

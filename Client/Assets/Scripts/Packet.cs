@@ -9,13 +9,15 @@ public enum ServerPackets {
     welcome = 1,
     spawnPlayer,
     playerData,
-    loadMap
+    loadMap,
+    teleportPlayer
 }
 
 /// <summary>Sent from client to server.</summary>
 public enum ClientPackets {
     welcomeReceived = 1,
-    playerData
+    playerData,
+    loadMap
 }
 
 public class Packet : IDisposable {

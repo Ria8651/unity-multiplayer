@@ -19,4 +19,10 @@ class ServerHandle {
 
         Server.clients[_fromClient].player.UpdatePlayerData(position, velocity);
     }
+
+    public static void LoadMap(int _fromClient, Packet _packet) {
+        int map = _packet.ReadInt();
+
+        Server.map.LoadMap(map);
+    }
 }

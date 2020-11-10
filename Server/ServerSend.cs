@@ -80,4 +80,12 @@ class ServerSend {
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void TeleportPlayer(Player player, Vector3 position) {
+        using (Packet _packet = new Packet((int)ServerPackets.teleportPlayer)) {
+            _packet.Write(position);
+
+            SendTCPData(player.id, _packet);
+        }
+    }
 }

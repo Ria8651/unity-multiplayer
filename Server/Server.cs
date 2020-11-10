@@ -87,7 +87,7 @@ class Server {
         }
     }
 
-    private static void InitializeServerData() {
+    static void InitializeServerData() {
         for (int i = 1; i <= maxPlayers; i++) {
             clients.Add(i, new Client(i));
         }
@@ -96,8 +96,10 @@ class Server {
 
         packetHandlers = new Dictionary < int, PacketHandler > () {
             { (int) ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
-            { (int) ClientPackets.playerData, ServerHandle.PlayerData }
+            { (int) ClientPackets.playerData, ServerHandle.PlayerData },
+            { (int) ClientPackets.loadMap, ServerHandle.LoadMap }
         };
+
         Console.WriteLine("Initialized packets.");
     }
 }

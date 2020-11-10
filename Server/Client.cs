@@ -58,7 +58,7 @@ class Client {
             try {
                 int _byteLength = stream.EndRead(_result);
                 if (_byteLength <= 0) {
-                    // TODO: disconnect
+                    Server.clients[id].Disconnect();
                     return;
                 }
 
@@ -69,7 +69,7 @@ class Client {
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
             } catch (Exception _ex) {
                 Console.WriteLine($"Error receiving TCP data: {_ex}");
-                // TODO: disconnect
+                Server.clients[id].Disconnect();
             }
         }
 
@@ -109,6 +109,14 @@ class Client {
 
             return false;
         }
+
+        public void Disconnect() {
+            socket.Close();
+            stream = null;
+            receivedData = null;
+            receiveBuffer = null;
+            socket = null;
+        }
     }
 
     public class UDP {
@@ -139,10 +147,23 @@ class Client {
                 }
             });
         }
+
+        public void Disconnect() {
+            endPoint = null;
+        }
+    }
+
+    void Disconnect() {
+        Console.WriteLine($"{tcp.socket.Client.RemoteEndPoint} has diconnected.");
+
+        player = null;
+
+        tcp.Disconnect();
+        udp.Disconnect();
     }
 
     public void SendIntoGame(string _playerName) {
-        player = new Player(id, _playerName, new Vector3(0, 0, 0));
+        player = new Player(id, _playerName, new Vector3(0, 1, 0));
 
         foreach (Client _client in Server.clients.Values) {
             if (_client.player != null) {

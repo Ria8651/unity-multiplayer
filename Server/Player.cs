@@ -22,4 +22,10 @@ class Player {
 
         ServerSend.UpdatePlayerData(this);
     }
+
+    public void TeleportPlayer(Vector3 position) {
+        UpdatePlayerData(position, Vector3.Zero);
+
+        ServerSend.TeleportPlayer(this, position);
+    }
 }
