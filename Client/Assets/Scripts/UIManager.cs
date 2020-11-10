@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class UIManager: MonoBehaviour {
     public static UIManager instance;
 
     public GameObject startMenu;
-    public InputField usernameField;
-    public InputField ipField;
+    public TMP_InputField usernameField;
+    public TMP_InputField ipField;
 
     private void Awake() {
         if (instance == null) {

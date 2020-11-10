@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour {
     public int id;
     public string username;
+    public Text usernameFeild;
 
     public void Teleport(Vector3 position) {
         transform.position = position;

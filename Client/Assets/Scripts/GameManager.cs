@@ -32,9 +32,13 @@ public class GameManager : MonoBehaviour {
             _player = Instantiate(playerPrefab, _position, _rotation);
         }
 
-        _player.GetComponent<PlayerManager>().id = _id;
-        _player.GetComponent<PlayerManager>().username = _username;
-        players.Add(_id, _player.GetComponent<PlayerManager>());
+        PlayerManager playerManager = _player.GetComponent<PlayerManager>();
+        playerManager.id = _id;
+        playerManager.username = _username;
+        if (playerManager.usernameFeild != null) {
+            playerManager.usernameFeild.text = _username;
+        }
+        players.Add(_id, playerManager);
     }
 
     public void LoadMap(int mapId) {

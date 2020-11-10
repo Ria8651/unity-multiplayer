@@ -21,9 +21,9 @@ public class Map {
         foreach (int index in Server.clients.Keys) {
             if (Server.clients[index].player != null) {
                 Vector3 position = new Vector3(
-                    (float)(radius * Math.Cos(angle * i)),
+                    (float)(radius * Math.Sin(angle * i)),
                     1f,
-                    (float)(radius * Math.Sin(angle * i))
+                    (float)(radius * Math.Cos(angle * i))
                 );
 
                 Server.clients[index].player.TeleportPlayer(position);
