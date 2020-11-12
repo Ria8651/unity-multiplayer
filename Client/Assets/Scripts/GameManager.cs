@@ -41,6 +41,13 @@ public class GameManager : MonoBehaviour {
         players.Add(_id, playerManager);
     }
 
+    public void DestroyPlayer(int id) {
+        GameObject player = players[id].gameObject;
+        players.Remove(id);
+
+        Destroy(player);
+    }
+
     public void LoadMap(int mapId) {
         if (mapId == loadedMapId) {
             return;

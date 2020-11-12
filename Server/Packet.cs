@@ -7,8 +7,10 @@ using System.Text;
 public enum ServerPackets {
     welcome = 1,
     spawnPlayer,
+    kickPlayer,
     playerData,
     loadMap,
+    setPlayerState,
     teleportPlayer
 }
 
@@ -16,6 +18,7 @@ public enum ServerPackets {
 public enum ClientPackets {
     welcomeReceived = 1,
     playerData,
+    ready,
     loadMap
 }
 

@@ -220,19 +220,23 @@ public class Client : MonoBehaviour {
         packetHandlers = new Dictionary<int, PacketHandler>() {
             { (int)ServerPackets.welcome, ClientHandle.Welcome },
             { (int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer },
+            { (int)ServerPackets.kickPlayer, ClientHandle.KickPlayer },
             { (int)ServerPackets.playerData, ClientHandle.PlayerData },
             { (int)ServerPackets.loadMap, ClientHandle.LoadMap },
+            { (int)ServerPackets.setPlayerState, ClientHandle.SetPlayerState },
             { (int)ServerPackets.teleportPlayer, ClientHandle.Teleport }
         };
     }
 
-    void Disconnect() {
+    public void Disconnect() {
         if (isConnected) {
             isConnected = false;
             tcp.socket.Close();
             udp.socket.Close();
 
             Debug.Log("Disconnected from server.");
+
+            // Todo send back to menu
         }
     }
 }

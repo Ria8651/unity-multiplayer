@@ -14,10 +14,16 @@ class ServerHandle {
     }
 
     public static void PlayerData(int _fromClient, Packet _packet) {
-        Vector3 position = _packet.ReadVector3();
-        Vector3 velocity = _packet.ReadVector3();
+        if (Server.clients[_fromClient].player != null) {
+            Vector3 position = _packet.ReadVector3();
+            Vector3 velocity = _packet.ReadVector3();
 
-        Server.clients[_fromClient].player.UpdatePlayerData(position, velocity);
+            Server.clients[_fromClient].player.UpdatePlayerData(position, velocity);
+        }
+    }
+
+    public static void ClientReady(int _fromClient, Packet _packet) {
+        GameLogic.ReadyUpClient(_fromClient);
     }
 
     public static void LoadMap(int _fromClient, Packet _packet) {

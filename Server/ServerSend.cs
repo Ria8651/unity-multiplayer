@@ -43,7 +43,7 @@ class ServerSend {
     }
 
     public static void Welcome(int _toClient, string _msg) {
-        using(Packet _packet = new Packet((int) ServerPackets.welcome)) {
+        using (Packet _packet = new Packet((int)ServerPackets.welcome)) {
             _packet.Write(_msg);
             _packet.Write(_toClient);
 
@@ -62,10 +62,19 @@ class ServerSend {
         }
     }
 
+    public static void KickPlayer(int id, string mesage) {
+        using (Packet _packet = new Packet((int)ServerPackets.kickPlayer)) {
+            _packet.Write(id);
+            _packet.Write(mesage);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     public static void UpdatePlayerData(Player player) {
         using (Packet _packet = new Packet((int)ServerPackets.playerData)) {
             _packet.Write(player.id);
-            
+
             _packet.Write(player.position);
             _packet.Write(player.velocity);
 
@@ -76,6 +85,15 @@ class ServerSend {
     public static void LoadMap(int mapId) {
         using (Packet _packet = new Packet((int)ServerPackets.loadMap)) {
             _packet.Write(mapId);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void SetPlayerState(int id, PlayerStates state) {
+        using (Packet _packet = new Packet((int)ServerPackets.setPlayerState)) {
+            _packet.Write(id);
+            _packet.Write((int)state);
 
             SendTCPDataToAll(_packet);
         }

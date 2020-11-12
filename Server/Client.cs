@@ -153,15 +153,6 @@ class Client {
         }
     }
 
-    void Disconnect() {
-        Console.WriteLine($"{tcp.socket.Client.RemoteEndPoint} has diconnected.");
-
-        player = null;
-
-        tcp.Disconnect();
-        udp.Disconnect();
-    }
-
     public void SendIntoGame(string _playerName) {
         player = new Player(id, _playerName, new Vector3(0, 1, 0));
 
@@ -179,6 +170,20 @@ class Client {
             }
         }
 
+        GameLogic.clientData.Add(id, new ClienData());
         ServerSend.LoadMap(Server.map.mapId);
+        ServerSend.SetPlayerState(id, PlayerStates.lobby);
+    }
+
+    void Disconnect() {
+        Console.WriteLine($"{tcp.socket.Client.RemoteEndPoint} has diconnected.");
+
+        player = null;
+
+        tcp.Disconnect();
+        udp.Disconnect();
+
+        GameLogic.clientData.Remove(id);
+        ServerSend.KickPlayer(id, "You were kicked");
     }
 }

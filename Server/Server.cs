@@ -97,9 +97,20 @@ class Server {
         packetHandlers = new Dictionary < int, PacketHandler > () {
             { (int) ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
             { (int) ClientPackets.playerData, ServerHandle.PlayerData },
+            { (int) ClientPackets.ready, ServerHandle.ClientReady },
             { (int) ClientPackets.loadMap, ServerHandle.LoadMap }
         };
 
         Console.WriteLine("Initialized packets.");
+    }
+
+    public static Client[] OnlinePlayers() {
+        List<Client> onlinePlayers = new List<Client>();
+        foreach (Client client in clients.Values) {
+            if (client.player != null) {
+                onlinePlayers.Add(client);
+            }
+        }
+        return onlinePlayers.ToArray();
     }
 }
