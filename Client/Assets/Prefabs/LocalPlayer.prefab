@@ -106,8 +106,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8651838546284474829}
   - component: {fileID: 556527479591889189}
-  - component: {fileID: 1702232897840756895}
   - component: {fileID: 8651838546284474834}
+  - component: {fileID: 1702232897840756895}
   m_Layer: 0
   m_Name: LocalPlayer
   m_TagString: Untagged
@@ -146,20 +146,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 3
---- !u!114 &1702232897840756895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8651838546284474835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 118e1be1b9b6e48b39e7b20697465a71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  acceleration: 0.25
 --- !u!114 &8651838546284474834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,3 +160,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   username: 
+  state: 0
+  predictionAcceleration: 0.3
+  usernameFeild: {fileID: 0}
+  velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &1702232897840756895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8651838546284474835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 118e1be1b9b6e48b39e7b20697465a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  acceleration: 0.25

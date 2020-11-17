@@ -12,10 +12,24 @@ public class PlayerManager : MonoBehaviour {
     public int id;
     public string username;
     public PlayerStates state;
+    public float predictionAcceleration = 0.3f;
     public TMP_Text usernameFeild;
 
-    public void Awake() {
-        Debug.Log(state);
+    [HideInInspector]
+    public Vector3 velocity;
+
+    Vector3 position;
+
+    void FixedUpdate() {
+        if (id != Client.instance.myId) {
+            Vector3 predictedPosition = position + velocity * Time.deltaTime;
+            transform.position += (predictedPosition - transform.position) * predictionAcceleration;
+        }
+    }
+
+    public void UpdatePlayerData(Vector3 _position, Vector3 _velocity) {
+        position = _position;
+        velocity = _velocity;
     }
 
     public void Teleport(Vector3 position) {
@@ -27,9 +41,6 @@ public class PlayerManager : MonoBehaviour {
     }
 
     public void UpdatePlayerState(PlayerStates newState) {
-        Debug.Log(state);
-        Debug.Log(newState);
-
         if (state == newState) {
             return;
         }

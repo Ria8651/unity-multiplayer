@@ -1444,6 +1444,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   acceleration: 0.3
+  prediction: 0
+  fovChange: 0.05
+  dampedVelocityAcceleration: 0.05
   offset: {x: 0, y: 7, z: -7}
 --- !u!20 &1687258584
 Camera:

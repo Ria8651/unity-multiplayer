@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody), typeof(PlayerManager))]
 public class PlayerController : MonoBehaviour {
 
     public float speed = 5;
@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour {
     public float acceleration = 0.25f;
 
     Rigidbody rb;
+    PlayerManager playerManager;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
+        playerManager = GetComponent<PlayerManager>();
     }
 
     void FixedUpdate() {
@@ -28,6 +30,8 @@ public class PlayerController : MonoBehaviour {
         
         Vector3 difference = (targetVelocity - currentVelocity) * acceleration;
         rb.velocity += difference;
+
+        playerManager.velocity = rb.velocity;
 
         ClientSend.PlayerData(transform.position, rb.velocity);
     }

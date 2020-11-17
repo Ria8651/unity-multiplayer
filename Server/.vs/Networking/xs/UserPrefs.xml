@@ -1,22 +1,13 @@
 ﻿<Properties StartupConfiguration="{C901D330-0679-4A94-BCA1-8ECA929DE996}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Server.cs">
     <Files>
       <File FileName="Server.cs" Line="100" Column="66" />
-      <File FileName="Client.cs" Line="175" Column="59" />
-      <File FileName="GameLogic.cs" Line="10" Column="10" />
-      <File FileName="Program.cs" Line="29" Column="1" />
+      <File FileName="Client.cs" />
+      <File FileName="GameLogic.cs" />
+      <File FileName="Program.cs" />
+      <File FileName="ServerSend.cs" />
+      <File FileName="Packet.cs" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Networking" expanded="True">
-            <Node name="Networking" expanded="True">
-              <Node name="Program.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

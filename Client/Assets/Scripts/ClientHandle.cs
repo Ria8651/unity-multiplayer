@@ -45,7 +45,7 @@ public class ClientHandle : MonoBehaviour {
         Vector3 position = _packet.ReadVector3();
         Vector3 velocity = _packet.ReadVector3();
 
-        GameManager.players[_id].transform.position = position;
+        GameManager.players[_id].UpdatePlayerData(position, velocity);
     }
 
     public static void LoadMap(Packet _packet) {

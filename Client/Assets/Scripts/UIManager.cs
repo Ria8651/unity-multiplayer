@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public enum UIState {
@@ -68,5 +69,6 @@ public class UIManager: MonoBehaviour {
     
     public void Ready() {
         ClientSend.Ready();
+
     }
 }

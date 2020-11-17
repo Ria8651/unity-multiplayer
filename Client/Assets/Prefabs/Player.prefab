@@ -358,4 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   username: Username
+  state: 0
+  predictionAcceleration: 0.5
   usernameFeild: {fileID: 6400289018676710967}
+  velocity: {x: 0, y: 0, z: 0}
