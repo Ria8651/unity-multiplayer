@@ -26,9 +26,13 @@ class ServerHandle {
         GameLogic.ReadyUpClient(_fromClient);
     }
 
-    public static void LoadMap(int _fromClient, Packet _packet) {
-        int map = _packet.ReadInt();
+    public static void InfectPlayer(int _fromClient, Packet _packet) {
+        int playerToInfect = _packet.ReadInt();
 
-        Server.map.LoadMap(map);
+        GameLogic.InfectPlayer(_fromClient, playerToInfect);
+    }
+
+    public static void Debug(int _fromClient, Packet _packet) {
+        GameLogic.EndGame();
     }
 }

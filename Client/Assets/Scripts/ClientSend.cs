@@ -35,10 +35,16 @@ public class ClientSend : MonoBehaviour {
         }
     }
 
-    public static void LoadMap(int map) {
-        using (Packet _packet = new Packet((int)ClientPackets.loadMap)) {
-            _packet.Write(map);
+    public static void InfectPlayer(PlayerManager player) {
+        using (Packet _packet = new Packet((int)ClientPackets.infectPlayer)) {
+            _packet.Write(player.id);
 
+            SendTCPData(_packet);
+        }
+    }
+
+    public static void Debug() {
+        using (Packet _packet = new Packet((int)ClientPackets.debug)) {
             SendTCPData(_packet);
         }
     }

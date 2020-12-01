@@ -98,7 +98,8 @@ class Server {
             { (int) ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
             { (int) ClientPackets.playerData, ServerHandle.PlayerData },
             { (int) ClientPackets.ready, ServerHandle.ClientReady },
-            { (int) ClientPackets.loadMap, ServerHandle.LoadMap }
+            { (int) ClientPackets.infectPlayer, ServerHandle.InfectPlayer },
+            { (int) ClientPackets.debug, ServerHandle.Debug }
         };
 
         Console.WriteLine("Initialized packets.");

@@ -56,7 +56,6 @@ class ServerSend {
             _packet.Write(player.id);
             _packet.Write(player.username);
             _packet.Write(player.position);
-            _packet.Write(player.rotation);
 
             SendTCPData(_toClient, _packet);
         }

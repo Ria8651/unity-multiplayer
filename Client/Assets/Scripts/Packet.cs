@@ -20,7 +20,8 @@ public enum ClientPackets {
     welcomeReceived = 1,
     playerData,
     ready,
-    loadMap
+    infectPlayer,
+    debug
 }
 
 public class Packet : IDisposable {

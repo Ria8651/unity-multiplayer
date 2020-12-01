@@ -11,7 +11,7 @@ public enum PlayerStates {
 public class PlayerManager : MonoBehaviour {
     public int id;
     public string username;
-    public PlayerStates state;
+    public PlayerStates playerState;
     public float predictionAcceleration = 0.3f;
     public TMP_Text usernameFeild;
 
@@ -41,25 +41,25 @@ public class PlayerManager : MonoBehaviour {
     }
 
     public void UpdatePlayerState(PlayerStates newState) {
-        if (state == newState) {
+        if (playerState == newState) {
             return;
         }
 
         switch (newState) {
             case PlayerStates.lobby:
                 UIManager.instance.SetState(UIState.lobby);
-                Debug.Log("You are in the lobby");
+                Debug.Log(gameObject.name + ": You are in the lobby");
                 break;
 
             case PlayerStates.bunny:
                 UIManager.instance.SetState(UIState.game);
-                Debug.Log("You are the bunny!");
+                Debug.Log(gameObject.name + ": You are the bunny!");
                 transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.red;
                 break;
 
             case PlayerStates.human:
                 UIManager.instance.SetState(UIState.game);
-                Debug.Log("You are a human.");
+                Debug.Log(gameObject.name + ": You are a human.");
                 transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.green;
                 break;
             case PlayerStates.none:
@@ -68,6 +68,6 @@ public class PlayerManager : MonoBehaviour {
                 break;
         }
 
-        state = newState;
+        playerState = newState;
     }
 }

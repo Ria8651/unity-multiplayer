@@ -23,13 +23,13 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void SpawnPlayer(int _id, string _username, Vector3 _position, Quaternion _rotation) {
+    public void SpawnPlayer(int _id, string _username, Vector3 _position) {
         GameObject _player;
         if (_id == Client.instance.myId) {
-            _player = Instantiate(localPlayerPrefab, _position, _rotation);
+            _player = Instantiate(localPlayerPrefab, _position, Quaternion.identity);
             CameraController.instance.target = _player.GetComponent<PlayerManager>();
         } else {
-            _player = Instantiate(playerPrefab, _position, _rotation);
+            _player = Instantiate(playerPrefab, _position, Quaternion.identity);
         }
 
         PlayerManager playerManager = _player.GetComponent<PlayerManager>();
@@ -68,17 +68,25 @@ public class GameManager : MonoBehaviour {
         loadedMapGO.name = "Map " + mapId.ToString();
     }
 
-    private void Update() {
+    public void InfectPlayer(PlayerManager player) {
+        ClientSend.InfectPlayer(player);
+    }
+
+    void Update() {
         if (Input.GetKeyDown(KeyCode.P)) {
-            ClientSend.LoadMap(0);
+            ClientSend.Debug();
         }
 
-        if (Input.GetKeyDown(KeyCode.O)) {
-            ClientSend.LoadMap(1);
-        }
+        //if (Input.GetKeyDown(KeyCode.P)) {
+        //    ClientSend.LoadMap(0);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.I)) {
-            ClientSend.LoadMap(2);
-        }
+        //if (Input.GetKeyDown(KeyCode.O)) {
+        //    ClientSend.LoadMap(1);
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.I)) {
+        //    ClientSend.LoadMap(2);
+        //}
     }
 }

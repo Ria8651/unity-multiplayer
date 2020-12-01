@@ -3,15 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 
-public enum PlayerStates {
-    none,
-    lobby,
-    bunny,
-    human
-}
-
 class GameLogic {
-    public static Dictionary<int, ClienData> clientData = new Dictionary<int, ClienData>();
+    static Random random;
 
     public static void Update() {
         ThreadManager.UpdateMain();
@@ -23,6 +16,8 @@ class GameLogic {
             return;
         }
 
+        Console.WriteLine("Starting Game...");
+
         Client[] onlinePlayers = Server.OnlinePlayers();
         Vector3[] spawns = GenerateSpawns(onlinePlayers.Length);
 
@@ -30,30 +25,68 @@ class GameLogic {
         for (int i = 0; i < roles.Length; i++) { roles[i] = PlayerStates.human; }
         roles[0] = PlayerStates.bunny;
 
-        Random random = new Random();
+        if (random == null) {
+            random = new Random();
+        }
+
         roles = roles.OrderBy(x => random.Next()).ToArray();
 
         for (int i = 0; i < onlinePlayers.Length; i++) {
-            ServerSend.TeleportPlayer(onlinePlayers[i].player, spawns[i]);
-            ServerSend.SetPlayerState(onlinePlayers[i].id, roles[i]);
+            onlinePlayers[i].player.TeleportPlayer(spawns[i]);
+            onlinePlayers[i].player.UpdatePlayerState(roles[i]);
+
+            onlinePlayers[i].player.ready = false;
         }
 
         Server.map.LoadMap(1);
     }
 
-    public static void ReadyUpClient(int client) {
+    public static void EndGame() {
         if (Server.map.mapId == 0) {
-            clientData[client].ready = true;
+            Console.WriteLine("End Game: Game not running!");
+            return;
+        }
 
-            foreach (ClienData data in clientData.Values) {
-                if (!data.ready) {
+        Console.WriteLine("Game Over");
+
+        Client[] onlinePlayers = Server.OnlinePlayers();
+        Vector3[] spawns = GenerateSpawns(onlinePlayers.Length);
+
+        for (int i = 0; i < onlinePlayers.Length; i++) {
+            onlinePlayers[i].player.TeleportPlayer(spawns[i]);
+            onlinePlayers[i].player.UpdatePlayerState(PlayerStates.lobby);
+        }
+
+        Server.map.LoadMap(0);
+    }
+
+    public static void ReadyUpClient(int clientID) {
+        if (Server.map.mapId == 0) {
+            Server.clients[clientID].player.ready = true;
+        }
+
+        CheckGameState();
+    }
+
+    public static void CheckGameState() {
+        if (Server.map.mapId == 0) {
+            foreach (Client client in Server.OnlinePlayers()) {
+                if (!client.player.ready) {
                     return;
                 }
             }
-            
+
             if (Server.OnlinePlayers().Length >= 2) {
                 StartGame();
             }
+        } else {
+            foreach (Client client in Server.OnlinePlayers()) {
+                if (client.player.state != PlayerStates.bunny) {
+                    return;
+                }
+            }
+
+            EndGame();
         }
     }
 
@@ -73,9 +106,21 @@ class GameLogic {
 
         return spawns;
     }
-}
 
-public class ClienData {
-    public bool ready;
-    public PlayerStates state;
+    public static void InfectPlayer(int bunnyID, int humanID) {
+        if (Server.map.mapId == 0) {
+            return;
+        }
+
+        Player bunny = Server.clients[bunnyID].player;
+        Player human = Server.clients[humanID].player;
+
+        if ((bunny.position - human.position).Length() > 0.7f) {
+            return;
+        }
+
+        human.UpdatePlayerState(PlayerStates.bunny);
+
+        CheckGameState();
+    }
 }
