@@ -34,8 +34,6 @@ class GameLogic {
         for (int i = 0; i < onlinePlayers.Length; i++) {
             onlinePlayers[i].player.TeleportPlayer(spawns[i]);
             onlinePlayers[i].player.UpdatePlayerState(roles[i]);
-
-            onlinePlayers[i].player.ready = false;
         }
 
         Server.map.LoadMap(1);
@@ -54,7 +52,7 @@ class GameLogic {
 
         for (int i = 0; i < onlinePlayers.Length; i++) {
             onlinePlayers[i].player.TeleportPlayer(spawns[i]);
-            onlinePlayers[i].player.UpdatePlayerState(PlayerStates.lobby);
+            onlinePlayers[i].player.UpdatePlayerState(PlayerStates.waiting);
         }
 
         Server.map.LoadMap(0);
@@ -62,7 +60,9 @@ class GameLogic {
 
     public static void ReadyUpClient(int clientID) {
         if (Server.map.mapId == 0) {
-            Server.clients[clientID].player.ready = true;
+            if (Server.clients[clientID].player.state == PlayerStates.waiting) {
+                Server.clients[clientID].player.UpdatePlayerState(PlayerStates.ready);
+            }
         }
 
         CheckGameState();
@@ -71,7 +71,7 @@ class GameLogic {
     public static void CheckGameState() {
         if (Server.map.mapId == 0) {
             foreach (Client client in Server.OnlinePlayers()) {
-                if (!client.player.ready) {
+                if (client.player.state == PlayerStates.waiting) {
                     return;
                 }
             }
@@ -81,7 +81,7 @@ class GameLogic {
             }
         } else {
             foreach (Client client in Server.OnlinePlayers()) {
-                if (client.player.state != PlayerStates.bunny) {
+                if (client.player.state == PlayerStates.human) {
                     return;
                 }
             }

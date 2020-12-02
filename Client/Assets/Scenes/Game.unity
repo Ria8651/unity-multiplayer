@@ -2287,6 +2287,7 @@ MonoBehaviour:
   game: {fileID: 383305774}
   usernameField: {fileID: 460886819}
   ipField: {fileID: 1802514505}
+  readyButton: {fileID: 1922613547}
 --- !u!4 &2013468022
 Transform:
   m_ObjectHideFlags: 0

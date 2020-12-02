@@ -171,7 +171,7 @@ class Client {
         }
 
         ServerSend.LoadMap(Server.map.mapId);
-        ServerSend.SetPlayerState(id, PlayerStates.lobby);
+        player.UpdatePlayerState(PlayerStates.waiting);
     }
 
     void Disconnect() {

@@ -3,7 +3,8 @@ using System.Numerics;
 
 public enum PlayerStates {
     none,
-    lobby,
+    waiting,
+    ready,
     bunny,
     human
 }
@@ -14,8 +15,7 @@ class Player {
 
     public Vector3 position;
     public Vector3 velocity;
-
-    public bool ready;
+    
     public PlayerStates state;
 
     public Player(int _id, string _username, Vector3 spawnPosition) {

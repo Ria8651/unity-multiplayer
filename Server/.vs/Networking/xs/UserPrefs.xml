@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="GameLogic.cs">
     <Files>
       <File FileName="Server.cs" Line="100" Column="69" />
-      <File FileName="GameLogic.cs" Line="113" Column="10" />
-      <File FileName="Player.cs" Line="18" Column="23" />
+      <File FileName="GameLogic.cs" Line="61" Column="53" />
+      <File FileName="Player.cs" Line="9" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

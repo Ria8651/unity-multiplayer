@@ -3,7 +3,8 @@ using TMPro;
 
 public enum PlayerStates {
     none,
-    lobby,
+    waiting,
+    ready,
     bunny,
     human
 }
@@ -19,6 +20,10 @@ public class PlayerManager : MonoBehaviour {
     public Vector3 velocity;
 
     Vector3 position;
+
+    void Awake() {
+        UpdatePlayerState(playerState);
+    }
 
     void FixedUpdate() {
         if (id != Client.instance.myId) {
@@ -46,25 +51,43 @@ public class PlayerManager : MonoBehaviour {
         }
 
         switch (newState) {
-            case PlayerStates.lobby:
-                UIManager.instance.SetState(UIState.lobby);
-                Debug.Log(gameObject.name + ": You are in the lobby");
+            case PlayerStates.waiting:
+                if (id == Client.instance.myId) {
+                    UIManager.instance.SetState(UIState.waiting);
+                }
+
+                transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.gray;
+                break;
+
+            case PlayerStates.ready:
+                if (id == Client.instance.myId) {
+                    UIManager.instance.SetState(UIState.ready);
+                }
+
+                transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.cyan;
                 break;
 
             case PlayerStates.bunny:
-                UIManager.instance.SetState(UIState.game);
-                Debug.Log(gameObject.name + ": You are the bunny!");
+                if (id == Client.instance.myId) {
+                    UIManager.instance.SetState(UIState.game);
+                }
+
                 transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.red;
                 break;
 
             case PlayerStates.human:
-                UIManager.instance.SetState(UIState.game);
-                Debug.Log(gameObject.name + ": You are a human.");
+                if (id == Client.instance.myId) {
+                    UIManager.instance.SetState(UIState.game);
+                }
+
                 transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.green;
                 break;
+
             case PlayerStates.none:
-                UIManager.instance.SetState(UIState.menu);
-                Debug.LogError("Player Manager: playerState set to none!");
+                if (id == Client.instance.myId) {
+                    UIManager.instance.SetState(UIState.menu);
+                }
+
                 break;
         }
 

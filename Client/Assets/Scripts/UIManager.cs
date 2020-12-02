@@ -4,7 +4,8 @@ using TMPro;
 
 public enum UIState {
     menu,
-    lobby,
+    waiting,
+    ready,
     game
 }
 
@@ -16,6 +17,7 @@ public class UIManager: MonoBehaviour {
     public GameObject game;
     public TMP_InputField usernameField;
     public TMP_InputField ipField;
+    public GameObject readyButton;
 
     UIState state;
 
@@ -45,16 +47,22 @@ public class UIManager: MonoBehaviour {
                 menu.SetActive(true);
                 lobby.SetActive(false);
                 game.SetActive(false);
-                //usernameField.interactable = true;
-                //ipField.interactable = true;
                 break;
 
-            case UIState.lobby:
+            case UIState.waiting:
                 menu.SetActive(false);
                 lobby.SetActive(true);
                 game.SetActive(false);
-                //usernameField.interactable = false;
-                //ipField.interactable = false;
+
+                readyButton.SetActive(true);
+                break;
+
+            case UIState.ready:
+                menu.SetActive(false);
+                lobby.SetActive(true);
+                game.SetActive(false);
+
+                readyButton.SetActive(false);
                 break;
 
             case UIState.game:
@@ -69,6 +77,5 @@ public class UIManager: MonoBehaviour {
     
     public void Ready() {
         ClientSend.Ready();
-
     }
 }
