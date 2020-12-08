@@ -33,6 +33,12 @@ class ServerHandle {
     }
 
     public static void Debug(int _fromClient, Packet _packet) {
-        GameLogic.EndGame();
+        if (Server.map.mapId == 0) {
+            Server.map.LoadMap(1);
+        } else if (Server.map.mapId == 1) {
+            Server.map.LoadMap(2);
+        } else if (Server.map.mapId == 2) {
+            Server.map.LoadMap(0);
+        }
     }
 }

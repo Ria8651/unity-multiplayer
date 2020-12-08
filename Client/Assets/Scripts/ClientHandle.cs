@@ -48,9 +48,9 @@ public class ClientHandle : MonoBehaviour {
     }
 
     public static void LoadMap(Packet _packet) {
-        int mapId = _packet.ReadInt();
+        TileType[,] tiles = _packet.ReadMap();
 
-        GameManager.instance.LoadMap(mapId);
+        GameManager.instance.LoadMap(tiles);
     }
 
     public static void SetPlayerState(Packet _packet) {

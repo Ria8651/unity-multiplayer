@@ -11,13 +11,11 @@ public class GameManager : MonoBehaviour {
     public Map[] maps;
 
     GameObject loadedMapGO;
-    int loadedMapId = -1;
 
     void Awake() {
         if (instance == null) {
             instance = this;
-        }
-        else if (instance != this) {
+        } else if (instance != this) {
             Debug.Log("Instance already exists, destroying object!");
             Destroy(this);
         }
@@ -48,24 +46,13 @@ public class GameManager : MonoBehaviour {
         Destroy(player);
     }
 
-    public void LoadMap(int mapId) {
-        if (mapId == loadedMapId) {
-            return;
-        }
-
-        if (mapId >= maps.Length || mapId < 0) {
-            Debug.LogError("Load Map: Index outside bouds of array!");
-            return;
-        }
-
+    public void LoadMap(TileType[,] tiles) {
         if (loadedMapGO != null) {
             Destroy(loadedMapGO);
         }
 
-        loadedMapGO = Instantiate(maps[mapId].gameObject);
-        loadedMapId = mapId;
-
-        loadedMapGO.name = "Map " + mapId.ToString();
+        GameObject map = MapGenerator.instance.GenerateMap(tiles);
+        loadedMapGO = map;
     }
 
     public void InfectPlayer(PlayerManager player) {

@@ -170,7 +170,7 @@ class Client {
             }
         }
 
-        ServerSend.LoadMap(Server.map.mapId);
+        ServerSend.InitiliseMap(id);
         player.UpdatePlayerState(PlayerStates.waiting);
     }
 

@@ -150,13 +150,16 @@ public class Packet : IDisposable {
         Write(_value.Y);
         Write(_value.Z);
     }
-    /// <summary>Adds a Quaternion to the packet.</summary>
-    /// <param name="_value">The Quaternion to add.</param>
-    public void Write(Quaternion _value) {
-        Write(_value.X);
-        Write(_value.Y);
-        Write(_value.Z);
-        Write(_value.W);
+    /// <summary>Adds a Map to the packet.</summary>
+    /// <param name="_value">The Map to add.</param>
+    public void Write(TileType[,] _value) {
+        Write(_value.GetLength(0));
+        Write(_value.GetLength(1));
+        for (int x = 0; x < _value.GetLength(0); x++) {
+            for (int y = 0; y < _value.GetLength(1); y++) {
+                Write((int)_value[x, y]);
+            }
+        }
     }
     #endregion
 
@@ -304,10 +307,20 @@ public class Packet : IDisposable {
         return new Vector3(ReadFloat(_moveReadPos), ReadFloat(_moveReadPos), ReadFloat(_moveReadPos));
     }
 
-    /// <summary>Reads a Quaternion from the packet.</summary>
+    /// <summary>Reads a Map from the packet.</summary>
     /// <param name="_moveReadPos">Whether or not to move the buffer's read position.</param>
-    public Quaternion ReadQuaternion(bool _moveReadPos = true) {
-        return new Quaternion(ReadFloat(_moveReadPos), ReadFloat(_moveReadPos), ReadFloat(_moveReadPos), ReadFloat(_moveReadPos));
+    public TileType[,] ReadMap(bool _moveReadPos = true) {
+        int width = ReadInt(_moveReadPos);
+        int height = ReadInt(_moveReadPos);
+
+        TileType[,] tiles = new TileType[width, height];
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                tiles[x, y] = (TileType)ReadInt(_moveReadPos);
+            }
+        }
+
+        return tiles;
     }
     #endregion
 

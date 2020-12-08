@@ -22,3 +22,9 @@
 /Users/Brians/Desktop/Unity Stuff/Networking/Server/obj/Debug/netcoreapp3.0/Networking.dll
 /Users/Brians/Desktop/Unity Stuff/Networking/Server/obj/Debug/netcoreapp3.0/Networking.pdb
 /Users/Brians/Desktop/Unity Stuff/Networking/Server/obj/Debug/netcoreapp3.0/Networking.genruntimeconfig.cache
+/Users/Brians/Desktop/Unity Stuff/Networking/Server/bin/Debug/netcoreapp3.0/SkiaSharp.dll
+/Users/Brians/Desktop/Unity Stuff/Networking/Server/bin/Debug/netcoreapp3.0/runtimes/osx/native/libSkiaSharp.dylib
+/Users/Brians/Desktop/Unity Stuff/Networking/Server/bin/Debug/netcoreapp3.0/runtimes/win-arm64/native/libSkiaSharp.dll
+/Users/Brians/Desktop/Unity Stuff/Networking/Server/bin/Debug/netcoreapp3.0/runtimes/win-x64/native/libSkiaSharp.dll
+/Users/Brians/Desktop/Unity Stuff/Networking/Server/bin/Debug/netcoreapp3.0/runtimes/win-x86/native/libSkiaSharp.dll
+/Users/Brians/Desktop/Unity Stuff/Networking/Server/obj/Debug/netcoreapp3.0/Networking.csproj.CopyComplete

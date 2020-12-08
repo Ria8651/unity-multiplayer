@@ -81,11 +81,19 @@ class ServerSend {
         }
     }
 
-    public static void LoadMap(int mapId) {
+    public static void LoadMap(TileType[,] tiles) {
         using (Packet _packet = new Packet((int)ServerPackets.loadMap)) {
-            _packet.Write(mapId);
+            _packet.Write(tiles);
 
             SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void InitiliseMap(int id) {
+        using (Packet _packet = new Packet((int)ServerPackets.loadMap)) {
+            _packet.Write(Server.map.tiles);
+
+            SendTCPData(id, _packet);
         }
     }
 
