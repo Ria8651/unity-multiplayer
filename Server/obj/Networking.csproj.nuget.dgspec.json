@@ -24,6 +24,7 @@
         },
         "frameworks": {
           "netcoreapp3.0": {
+            "targetAlias": "netcoreapp3.0",
             "projectReferences": {}
           }
         },
@@ -35,11 +36,8 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
+          "targetAlias": "netcoreapp3.0",
           "dependencies": {
-            "SkiaSharp": {
-              "target": "Package",
-              "version": "[2.80.2, )"
-            },
             "System.Numerics.Vectors": {
               "target": "Package",
               "version": "[4.5.0, )"
@@ -66,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.201/RuntimeIdentifierGraph.json"
         }
       }
     }

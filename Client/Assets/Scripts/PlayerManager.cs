@@ -6,7 +6,8 @@ public enum PlayerStates {
     waiting,
     ready,
     bunny,
-    human
+    human,
+    spectator
 }
 
 public class PlayerManager : MonoBehaviour {
@@ -52,41 +53,43 @@ public class PlayerManager : MonoBehaviour {
 
         switch (newState) {
             case PlayerStates.waiting:
-                if (id == Client.instance.myId) {
+                if (id == Client.instance.myId)
                     UIManager.instance.SetState(UIState.waiting);
-                }
 
                 transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.gray;
                 break;
 
             case PlayerStates.ready:
-                if (id == Client.instance.myId) {
+                if (id == Client.instance.myId)
                     UIManager.instance.SetState(UIState.ready);
-                }
 
                 transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.cyan;
                 break;
 
             case PlayerStates.bunny:
-                if (id == Client.instance.myId) {
+                if (id == Client.instance.myId)
                     UIManager.instance.SetState(UIState.game);
-                }
 
                 transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.red;
                 break;
 
             case PlayerStates.human:
-                if (id == Client.instance.myId) {
+                if (id == Client.instance.myId)
                     UIManager.instance.SetState(UIState.game);
-                }
 
                 transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.green;
                 break;
 
+            case PlayerStates.spectator:
+                if (id == Client.instance.myId)
+                    UIManager.instance.SetState(UIState.game);
+
+                transform.GetChild(0).GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 0.3f);
+                break;
+
             case PlayerStates.none:
-                if (id == Client.instance.myId) {
+                if (id == Client.instance.myId)
                     UIManager.instance.SetState(UIState.menu);
-                }
 
                 break;
         }

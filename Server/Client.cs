@@ -171,12 +171,11 @@ class Client {
         }
 
         ServerSend.InitiliseMap(id);
-        player.UpdatePlayerState(PlayerStates.waiting);
+        player.UpdatePlayerState(Server.map.mapId == 0 ? PlayerStates.waiting : PlayerStates.spectator);
     }
 
     void Disconnect() {
         Console.WriteLine($"{tcp.socket.Client.RemoteEndPoint} has diconnected.");
-        GameLogic.CheckGameState();
 
         player = null;
 
@@ -184,5 +183,7 @@ class Client {
         udp.Disconnect();
 
         ServerSend.KickPlayer(id, "You were kicked");
+        
+        GameLogic.CheckGameState();
     }
 }

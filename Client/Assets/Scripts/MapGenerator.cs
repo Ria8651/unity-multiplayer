@@ -77,19 +77,81 @@ public class MapGenerator : MonoBehaviour {
                         GameObject piece;
                         if (tiles[x, y] == TileType.door) {
                             if (facing == TileType.corridor) {
-                                piece = door;
+                                piece = open;
+                            } else if (facing == TileType.solid) {
+                                piece = wall;
                             } else {
-                                piece = facing == TileType.solid ? wall : open;
+                                piece = door;
                             }
-                        } else if (tiles[x, y] == TileType.corridor && facing == TileType.door) {
-                            piece = door;
+                        } else if (tiles[x, y] == TileType.corridor) {
+                            if (facing == TileType.door) {
+                                piece = open;
+                            } else if (facing == TileType.solid) {
+                                piece = wall;
+                            } else {
+                                piece = door;
+                            }
                         } else {
+                            if (facing == TileType.door) {
+                                piece = door;
+                            } else if (facing != tiles[x, y]) {
+                                piece = wall;
+                            } else {
+                                piece = open;
+                            }
+                        }
+
+                        if (tiles[x, y] == TileType.door) {
+                            if (facing == TileType.corridor) {
+                                piece = open;
+                            } else if (facing == TileType.solid) {
+                                piece = wall;
+                            } else {
+                                piece = door;
+                            }
+                        } else if (tiles[x, y] == TileType.corridor) {
                             if (facing == TileType.door) {
                                 piece = open;
                             } else {
-                                piece = facing != tiles[x, y] ? wall : open;
+                                piece = tiles[x, y] != facing ? wall : open;
+                            }
+                        } else {
+                            if (facing == TileType.door) {
+                                piece = door;
+                            } else {
+                                piece = tiles[x, y] != facing ? wall : open;
                             }
                         }
+
+                        //if (tiles[x, y] == TileType.door) {
+                        //    if (facing == TileType.door) {
+                        //        piece = door;
+                        //    } else {
+                        //        piece = facing == TileType.solid ? wall : open;
+                        //    }
+                        //} else {
+                        //    if (facing != tiles[x, y] && facing != TileType.door) {
+                        //        piece = wall;
+                        //    } else {
+                        //        piece = open;
+                        //    }
+                        //}
+
+                        //if (tiles[x, y] == TileType.door) {
+                        //    if (facing == TileType.corridor) {
+                        //        piece = door;
+                        //    } else {
+                        //        piece = facing == TileType.solid ? wall : open;
+                        //    }
+                        //} else if (tiles[x, y] == TileType.corridor && facing == TileType.door) {
+                        //    piece = door;
+                        //} else {
+                        //    if (facing == TileType.door) {
+                        //        piece = open;
+                        //    } else {
+                        //        piece = facing != tiles[x, y] ? wall : open;
+                        //    }
+                        //}
 
                         GameObject newPiece = Instantiate(piece, mapGO.transform);
                         newPiece.transform.position = new Vector3(x * 4 - width * 2, 0, y * 4 - height * 2);

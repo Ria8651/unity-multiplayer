@@ -1,11 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "BSdRH0WqPa48v5pxL+eO4r/21og/VBXCqA8UBL4dhUnsP7EVr49ZB0wJROjTo8KXfNqfV+/C4E+vcl8bTB6PTA==",
+  "dgSpecHash": "ZyBwTekHCDRtypSp10/4JOG0o02SmmqpkwSiLj3qNG1jAlYqaE9eh0MMmUkoR9Gzb746lqGIyOj3NSmOmWjYjA==",
   "success": true,
   "projectFilePath": "/Users/Brians/Desktop/Unity Stuff/Networking/Server/Networking.csproj",
   "expectedPackageFiles": [
-    "/Users/Brians/.nuget/packages/skiasharp/2.80.2/skiasharp.2.80.2.nupkg.sha512",
-    "/Users/Brians/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",
     "/Users/Brians/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
     "/Users/Brians/.nuget/packages/microsoft.aspnetcore.app.ref/3.0.1/microsoft.aspnetcore.app.ref.3.0.1.nupkg.sha512"
   ],

@@ -6,7 +6,8 @@ public enum PlayerStates {
     waiting,
     ready,
     bunny,
-    human
+    human,
+    spectator
 }
 
 class Player {
@@ -25,11 +26,29 @@ class Player {
     }
 
     public void UpdatePlayerData(Vector3 _position, Vector3 _velocity) {
+        //if (GameLogic.infecting.ContainsValue(id)) {
+        //    return;
+        //}
+
+        //if (GameLogic.infecting.ContainsKey(id)) {
+        //    int human = GameLogic.infecting[id];
+        //    Server.clients[human].player.UpdateInfectedPlayerData(_position, _velocity);
+
+        //    return;
+        //}
+
         position = _position;
         velocity = _velocity;
 
         ServerSend.UpdatePlayerData(this);
     }
+
+    //public void UpdateInfectedPlayerData(Vector3 _position, Vector3 _velocity) {
+    //    position = _position;
+    //    velocity = _velocity;
+
+    //    ServerSend.UpdatePlayerData(this, false);
+    //}
 
     public void TeleportPlayer(Vector3 position) {
         UpdatePlayerData(position, Vector3.Zero);

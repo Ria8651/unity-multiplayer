@@ -70,14 +70,18 @@ class ServerSend {
         }
     }
 
-    public static void UpdatePlayerData(Player player) {
+    public static void UpdatePlayerData(Player player, bool excludeSelf = true) {
         using (Packet _packet = new Packet((int)ServerPackets.playerData)) {
             _packet.Write(player.id);
 
             _packet.Write(player.position);
             _packet.Write(player.velocity);
 
-            SendUDPDataToAll(player.id, _packet);
+            if (excludeSelf) {
+                SendUDPDataToAll(player.id, _packet);
+            } else {
+                SendUDPDataToAll(_packet);
+            }
         }
     }
 

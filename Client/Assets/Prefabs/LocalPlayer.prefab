@@ -176,7 +176,7 @@ MonoBehaviour:
   id: 0
   username: 
   playerState: 0
-  predictionAcceleration: 0.3
+  predictionAcceleration: 0.5
   usernameFeild: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1702232897840756895
@@ -194,4 +194,4 @@ MonoBehaviour:
   speed: 5
   acceleration: 0.25
   dashSpeed: 20
-  characterRepulsionForce: 30
+  characterRepulsionForce: 150

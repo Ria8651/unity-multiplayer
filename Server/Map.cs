@@ -12,9 +12,9 @@ public enum TileType {
 }
 
 public class Map {
-    public int mapId;
+    public int mapId = -1;
     public TileType[,] tiles = new TileType[4, 4];
-    public string mapFolder = "/Users/Brians/Desktop/Unity Stuff/Networking/Server/Maps";
+    public string mapFolder = @"\Users\bkwoo\Documents\Unity\Networking\Server\Maps";
 
     Dictionary<int, string> mapImagePathDictionary = new Dictionary<int, string>();
 
@@ -30,6 +30,7 @@ public class Map {
 
         if (!mapImagePathDictionary.ContainsKey(mapId)) {
             Console.WriteLine("Load Map: No map with given id!");
+            return;
         }
 
         this.mapId = mapId;
@@ -38,7 +39,9 @@ public class Map {
     }
 
     void GetMapImages() {
-        string[] mapImagePaths = Directory.GetFiles(mapFolder, "*.png");
+        string appPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"../../../Maps"));
+
+        string[] mapImagePaths = Directory.GetFiles(appPath, "*.png");
         foreach (var mapImagePath in mapImagePaths) {
             string name = Path.GetFileNameWithoutExtension(mapImagePath);
             if (int.TryParse(name, out int mapIdOfImage)) {
