@@ -1,0 +1,11 @@
+Client/obj
+Client/Logs
+Client/Library
+Client/.vscode
+Client/.vs
+Client/.vsconfig
+Client/Assembly-CSharp-Editor.csproj
+Server/.vs
+Server/bin
+Server/obj
+Client/Temp

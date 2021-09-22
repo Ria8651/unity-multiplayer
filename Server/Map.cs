@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -14,7 +14,7 @@ public enum TileType {
 public class Map {
     public int mapId = -1;
     public TileType[,] tiles = new TileType[4, 4];
-    public string mapFolder = @"\Users\bkwoo\Documents\Unity\Networking\Server\Maps";
+    public string mapFolder = @"/Users/Brians/Desktop/test/unity-multiplayer/Server/Maps";
 
     Dictionary<int, string> mapImagePathDictionary = new Dictionary<int, string>();
 
@@ -39,7 +39,7 @@ public class Map {
     }
 
     void GetMapImages() {
-        string appPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"../../../Maps"));
+        string appPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"Maps"));
 
         string[] mapImagePaths = Directory.GetFiles(appPath, "*.png");
         foreach (var mapImagePath in mapImagePaths) {

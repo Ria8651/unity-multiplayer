@@ -63,17 +63,5 @@ public class GameManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.P)) {
             ClientSend.Debug();
         }
-
-        //if (Input.GetKeyDown(KeyCode.P)) {
-        //    ClientSend.LoadMap(0);
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.O)) {
-        //    ClientSend.LoadMap(1);
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.I)) {
-        //    ClientSend.LoadMap(2);
-        //}
     }
 }

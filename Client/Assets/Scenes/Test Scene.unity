@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abddd24b49fff4b579036130cc63c938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 2800000, guid: 2a632ec1bef884eef966b90087de5cbd, type: 3}
   solid: {fileID: 8552770967368117251, guid: f1bc1427e0b18465caee79bc6e4c1a22, type: 3}
   wall: {fileID: 9088410881308722532, guid: 0f94b6e35cde149e3bb29715f7c3743f, type: 3}
   open: {fileID: 8422208122322296274, guid: e11e21ea7ebd545f29ae88cfcec109a6, type: 3}
